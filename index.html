@@ -13,6 +13,8 @@
             --wb-primary: #2C3E50; /* Azul oscuro profesional */
             --wb-secondary: #3498DB; /* Azul claro */
             --wb-card-bg: #2c3e50; /* Azul más oscuro para WBStudios */
+            --courses-bg: #1a2a3a;
+            --store-bg: #2a1a3a;
             --dark-bg: #1a1a2e;
             --card-bg: #16213e;
             --dark-text: #ECF0F1;
@@ -371,30 +373,96 @@
             background-color: rgba(22, 33, 62, 0.95);
         }
 
-        .project-image {
-            height: 200px;
+        /* Carrusel Styles */
+        .carousel-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background: var(--inti-secondary);
+            transform: scale(1.2);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        /* Video Container */
+        .video-container {
             position: relative;
+            height: 200px;
+            margin: 15px 0;
+            border-radius: 10px;
             overflow: hidden;
         }
 
-        .project-image:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .project-video {
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
-        }
-
-        .poveglia {
-            background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2260450/0b5c7ef9b7e397e6f58c7eabe5cb49a59b730937/ss_0b5c7ef9b7e397e6f58c7eabe5cb49a59b730937.1920x1080.jpg?t=1760633487');
-        }
-
-        .sinister-soul {
-            background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2298740/ss_b6fbfd07ecbdae5b8c7bae43ac50381fd3571bf8.1920x1080.jpg?t=1733485000');
+            border: none;
         }
 
         .project-content {
@@ -452,6 +520,213 @@
         }
 
         .project-button:hover:before {
+            left: 100%;
+        }
+
+        /* Courses Section */
+        .courses {
+            background: linear-gradient(135deg, var(--courses-bg), var(--dark-bg));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .courses h2 {
+            color: var(--light-text);
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .courses-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .course-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: rgba(30, 40, 60, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            background-color: rgba(30, 40, 60, 0.95);
+        }
+
+        .course-video-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .course-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--inti-primary);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s;
+        }
+
+        .course-button:hover {
+            background-color: var(--inti-secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .course-button:hover:before {
+            left: 100%;
+        }
+
+        /* Store Section */
+        .store {
+            background: linear-gradient(135deg, var(--store-bg), var(--dark-bg));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store h2 {
+            color: var(--light-text);
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .store-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .store-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: rgba(40, 30, 60, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .store-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            background-color: rgba(40, 30, 60, 0.95);
+        }
+
+        .store-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .store-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+        }
+
+        .store-content {
+            padding: 25px;
+        }
+
+        .store-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #9b59b6;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .store-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--wb-secondary);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s;
+        }
+
+        .store-button:hover {
+            background-color: var(--wb-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .store-button:hover:before {
             left: 100%;
         }
 
@@ -547,6 +822,14 @@
             .company-logo {
                 height: 80px;
             }
+            
+            .carousel-container {
+                height: 200px;
+            }
+            
+            .video-container {
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -563,6 +846,8 @@
                 <ul>
                     <li><a href="#about">Nosotros</a></li>
                     <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#courses">Cursos</a></li>
+                    <li><a href="#store">Tienda</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
             </nav>
@@ -645,7 +930,35 @@
             <div class="projects-container">
                 <!-- Poveglia Project -->
                 <div class="project-card">
-                    <div class="project-image poveglia">&nbsp;</div>
+                    <div class="carousel-container" id="poveglia-carousel">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4037640/4db971233936f1b1d36ba1a22c5b4befea26b0f5/ss_4db971233936f1b1d36ba1a22c5b4befea26b0f5.1920x1080.jpg?t=1760630662')"></div>
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4037640/0b5c7ef9b7e397e6f58c7eabe5cb49a59b730937/ss_0b5c7ef9b7e397e6f58c7eabe5cb49a59b730937.1920x1080.jpg?t=1760630662')"></div>
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4037640/1f71433b5f52a2e8c9f40de572115640d891ddc1/ss_1f71433b5f52a2e8c9f40de572115640d891ddc1.1920x1080.jpg?t=1760630662')"></div>
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4037640/b1bbb3c93734e58fd51f4657c5701632e87c7ab2/ss_b1bbb3c93734e58fd51f4657c5701632e87c7ab2.1920x1080.jpg?t=1760630662')"></div>
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4037640/26e5ae079f413eaee70584a8be222998851ab175/ss_26e5ae079f413eaee70584a8be222998851ab175.1920x1080.jpg?t=1760630662')"></div>
+                        </div>
+                        <button class="carousel-nav carousel-prev">‹</button>
+                        <button class="carousel-nav carousel-next">›</button>
+                        <div class="carousel-controls">
+                            <button class="carousel-dot active" data-slide="0"></button>
+                            <button class="carousel-dot" data-slide="1"></button>
+                            <button class="carousel-dot" data-slide="2"></button>
+                            <button class="carousel-dot" data-slide="3"></button>
+                            <button class="carousel-dot" data-slide="4"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/KzuFxj469TI?modestbranding=1&rel=0" 
+                            class="project-video"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
                     <div class="project-content">
                         <span class="status in-development">En Desarrollo</span>
                         <h3>Poveglia</h3>
@@ -656,12 +969,147 @@
 
                 <!-- Sinister Soul Project -->
                 <div class="project-card">
-                    <div class="project-image sinister-soul">&nbsp;</div>
+                    <div class="carousel-container" id="sinister-carousel">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2298740/ss_61eee24038f3b03100072a8ae937be58715e7db7.1920x1080.jpg?t=1733485000')"></div>
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2298740/ss_b6fbfd07ecbdae5b8c7bae43ac50381fd3571bf8.1920x1080.jpg?t=1733485000')"></div>
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2298740/ss_a928ff775b2c60b2c7c8267a871ec09df5ba5293.1920x1080.jpg?t=1733485000')"></div>
+                            <div class="carousel-slide" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2298740/ss_47e8cd71d516e4733ad62a39923b809ca24f7f71.1920x1080.jpg?t=1733485000')"></div>
+                        </div>
+                        <button class="carousel-nav carousel-prev">‹</button>
+                        <button class="carousel-nav carousel-next">›</button>
+                        <div class="carousel-controls">
+                            <button class="carousel-dot active" data-slide="0"></button>
+                            <button class="carousel-dot" data-slide="1"></button>
+                            <button class="carousel-dot" data-slide="2"></button>
+                            <button class="carousel-dot" data-slide="3"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/ivAQ5EYLtW4?modestbranding=1&rel=0" 
+                            class="project-video"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
                     <div class="project-content">
                         <span class="status in-waiting">En Espera</span>
                         <h3>Sinister Soul</h3>
                         <p>En Sinister Soul, encarnas a Jhon, quien, en un viaje nocturno para ver a su familia, es forzado a adentrarse en Zoar, un pueblo desolado y maldito. Enfrenta una entidad misteriosa y enemigos aterradores usando objetos extraños. ¿Tendrás la agilidad para sobrevivir?</p>
                         <a class="project-button" href="https://store.steampowered.com/app/2298740/Sinister_Soul_The_Cursed_Forest/" target="_blank" rel="noopener">Ver en Steam</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2>🎓 Cursos por Willians Benites </h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                ¿Quieres aprender a crear videojuegos con Unreal Engine desde cero o mejorar tus habilidades como desarrollador? 
+                Aquí tienes dos cursos diseñados para ayudarte a avanzar paso a paso, con enfoque práctico y directo al grano:
+            </p>
+            <div class="courses-container">
+                <!-- Curso 1 -->
+                <div class="course-card">
+                    <div class="course-video-container">
+                        <video class="course-video" controls>
+                            <source src="https://mp4-c.udemycdn.com/2020-10-06_04-27-40-c50021f4497840cda9843c712dcb545b/1/WebHD_720p.mp4?Expires=1762434847&Signature=yRMaaQNaBMVEPjn0M5TPYtuQ5Bo8egprW8gzE1~71c37YFvytddG1QOil4SPz3msMxzMT4AJrpC3UpIozfgTEXoQo-EdQWo0-fAUpms8brlF4VFK48KzLumkkKPUw0-0SFT6yeYPyM2ZW3w0wEgD~sPAypx-rY4Is6mAfpFx216RGpN7v4g45y-yjV-0fpZ7hXP8AtHjET4ycXGB40CWHzqmLxf71rc3YEQRPB2JScVxA4MesB5nj-vGH-NGD1EomPgjNqGz--O5ggAXLG3LJVHlpKVZuRNjsOhH4~Fhanj-muEx5mMZcNMgFqY2KtWS9SedyoW9OqlXwlvXnyPO1w__&Key-Pair-Id=K3MG148K9RIRF4" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-badge">🟢 Curso 1</span>
+                        <h3>Creando un videojuego lateral desde cero en Unreal Engine 4</h3>
+                        <p><strong>📘 Ideal para principiantes que quieren entender el flujo completo de desarrollo.</strong></p>
+                        <p>Aprende a crear un juego completo desde cero, incluyendo mecánicas, niveles, IA y más. Perfecto para quienes están comenzando en el desarrollo de videojuegos.</p>
+                        <a class="course-button" href="https://www.udemy.com/course/creando-un-video-juego-lateral-desde-0-en-unreal-engine-4/" target="_blank" rel="noopener">Ver Curso en Udemy</a>
+                    </div>
+                </div>
+
+                <!-- Curso 2 -->
+                <div class="course-card">
+                    <div class="course-video-container">
+                        <video class="course-video" controls>
+                            <source src="https://mp4-c.udemycdn.com/2023-03-17_14-39-29-63d93ed17950cf5249460012badf7b4e/2/WebHD_720p.mp4?Expires=1762434935&Signature=MHUF~o5UtLxLpT~FsbpoVk8S663Qg9Ai~nIuJKoS44-gNBakZI61Wd5KOd-4IuPK24nawQmGf2zhAD8q3CAxbi41OXtlUR~sOHeoQ9qxW1dRvj7BdSQ~XqcBtedNARGrBIxy1QUUlgRILJxlpUZ8MPWfT4ZjaR~~-9PMJiAD~pvCyGqufebI0vTATMGa3Op9MbaoX4VvZFi7bnFtZQSyBAaRuvombpb82g1EG5FnMw~InThHHfgP7bjCO~7VvMASoKeDhg1hNMtJkkMzdKlTauBCY9FC1HOOOGckxunsapo63MNWeGhS-nv7dKafYtcB~PJyb3pAXjikygM3u4hlVQ__&Key-Pair-Id=K3MG148K9RIRF4" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-badge">🌿 Curso 2</span>
+                        <h3>Diseño de entornos en Unreal Engine 5 (Español)</h3>
+                        <p><strong>🎨 Aprende a construir escenarios visualmente impactantes y optimizados para UE5.</strong></p>
+                        <p>Domina las técnicas profesionales para crear entornos impresionantes en Unreal Engine 5. Incluye iluminación, materiales, paisajes y optimización.</p>
+                        <a class="course-button" href="https://www.udemy.com/course/unreal-engine-5-environment-design-espanol/" target="_blank" rel="noopener">Ver Curso en Udemy</a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <p><strong>📌 Todos los cursos están en español y pensados para desarrolladores hispanohablantes.</strong></p>
+                <p>📣 Si tienes dudas o quieres compartir tu progreso, usa el Discord https://discord.com/invite/VZ9bv9Fpw8 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="store" class="store">
+        <div class="container">
+            <h2>🛒 Tienda - Assets Profesionales</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Descubre nuestros assets profesionales para Unreal Engine, diseñados para acelerar tu desarrollo y llevar tus proyectos al siguiente nivel.
+            </p>
+            <div class="store-container">
+                <!-- Producto 1 -->
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('https://media.discordapp.net/attachments/1425258914009845760/1425269491574509608/dddddddddddddddd.jpg?ex=690d34a7&is=690be327&hm=0227acc5d47d892eda85099e99d8c4cc3f14d864bc33deac66def0221015ee7c&=&format=webp')"></div>
+                    <div class="store-content">
+                        <span class="store-badge">🎼 Battle Sound System V2</span>
+                        <h3>Sistema Musical AAA para Batallas Épicas</h3>
+                        <p>Ya reconocido en varios juegos por su fácil implementación, este sistema te permite añadir música dinámica a tus combates en tercera o primera persona con solo unos clics.</p>
+                        
+                        <h4>🆕 Actualización V2</h4>
+                        <p>Incluye el blueprint SongChanger, que te permite activar música ambiental por secciones o de forma global.</p>
+                        
+                        <ul style="margin: 15px 0; padding-left: 20px;">
+                            <li>🧩 Por sección: arrastra el blueprint a una sala y asigna el número de pista</li>
+                            <li>🌐 Global: activa la variable booleana Enable Music Ambient</li>
+                            <li>🎓 Tutorial en español incluido</li>
+                            <li>📦 Video tutorial de implementación y soporte directo</li>
+                        </ul>
+                        
+                        <p><strong>💥 Ideal para:</strong> Juegos de acción con combates intensos, proyectos que buscan experiencia sonora tipo AAA, desarrolladores que quieren resultados rápidos y profesionales.</p>
+                        
+                        <a class="store-button" href="https://www.fab.com/es-mx/listings/cea21486-ce6d-4bad-8b71-e6b0d21edf70" target="_blank" rel="noopener">Ver en FAB</a>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('https://media.discordapp.net/attachments/1425258914009845760/1425270163858526290/traduc.jpg?ex=690d3547&is=690be3c7&hm=9bfbfdf31252f6fe8623b24410f66409b951b810ba0c7fc0607c17d9d5fd7b23&=&format=webp&width=1522&height=856')"></div>
+                    <div class="store-content">
+                        <span class="store-badge">🌍 Sistema de Traducción + Subtítulos con Voz</span>
+                        <h3>Traduce tu juego a 15 idiomas con subtítulos y voces integradas</h3>
+                        <p>Desarrollado en Unreal Engine y compatible con todas sus versiones, este sistema lleva la accesibilidad y experiencia del jugador a otro nivel.</p>
+                        
+                        <h4>Características destacadas:</h4>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
+                            <li>🌐 Traducción multilingüe: compatible con los 15 idiomas más hablados</li>
+                            <li>🎙️ Subtítulos con audio: integra voces en diferentes idiomas</li>
+                            <li>⚡ Extensible y fácil de usar: traduce menús, logos y audios</li>
+                            <li>📚 Documentación completa: tutoriales en video y soporte en Discord</li>
+                            <li>🔄 Actualizaciones constantes: nuevas funciones y mejoras</li>
+                            <li>📊 Gestión desde Excel o Google Drive</li>
+                        </ul>
+                        
+                        <p>Traduce tu juego sin complicaciones, incluso si nunca lo has hecho antes. ¡Es rápido, eficiente y profesional!</p>
+                        
+                        <a class="store-button" href="https://www.fab.com/es-mx/listings/c9f7ac63-ef66-4034-88e3-fb9037cb54a0" target="_blank" rel="noopener">Ver en FAB</a>
                     </div>
                 </div>
             </div>
@@ -733,6 +1181,53 @@
                 });
             });
         });
+
+        // Carrusel functionality
+        function initializeCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            const slides = carousel.querySelector('.carousel-slides');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            
+            let currentSlide = 0;
+            const totalSlides = dots.length;
+            
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                goToSlide(currentSlide);
+            }
+            
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                goToSlide(currentSlide);
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToSlide(index));
+            });
+            
+            // Auto-advance slides every 5 seconds
+            setInterval(nextSlide, 5000);
+        }
+        
+        // Initialize carousels
+        initializeCarousel('poveglia-carousel');
+        initializeCarousel('sinister-carousel');
     </script>
 </body>
 </html>
