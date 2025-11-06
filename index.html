@@ -55,6 +55,47 @@
             margin-bottom: 15px;
         }
 
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(44, 62, 80, 0.95);
+            border-radius: 25px;
+            padding: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            max-width: 300px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--light-text);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            flex: 1;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .lang-btn.active {
+            background: var(--inti-secondary);
+            color: var(--dark-bg);
+            font-weight: 600;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.1);
+        }
+
         /* Header */
         header {
             background: linear-gradient(135deg, var(--inti-primary), var(--wb-primary));
@@ -124,6 +165,7 @@
             width: 100%;
         }
 
+        /* Resto del CSS se mantiene igual... */
         /* Hero Section con Video */
         .hero {
             padding-top: 120px;
@@ -830,10 +872,36 @@
             .video-container {
                 height: 150px;
             }
+            
+            .language-selector {
+                top: 80px;
+                right: 10px;
+                max-width: 280px;
+            }
+            
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+                min-width: 35px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container header-container">
@@ -844,11 +912,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#projects">Proyectos</a></li>
-                    <li><a href="#courses">Cursos</a></li>
-                    <li><a href="#store">Tienda</a></li>
-                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="#about" data-translate="nav_about">Nosotros</a></li>
+                    <li><a href="#projects" data-translate="nav_projects">Proyectos</a></li>
+                    <li><a href="#courses" data-translate="nav_courses">Cursos</a></li>
+                    <li><a href="#store" data-translate="nav_store">Tienda</a></li>
+                    <li><a href="#contact" data-translate="nav_contact">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -858,57 +926,57 @@
     <section class="hero">
         <video autoplay muted loop class="hero-video">
             <source src="https://videos.pexels.com/video-files/2098989/2098989-uhd_2560_1440_30fps.mp4" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
+            <span data-translate="video_unsupported">Tu navegador no soporta el elemento de video.</span>
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Creando Experiencias de Juego Inolvidables</h1>
-            <p>Dos empresas unidas por la pasión de desarrollar videojuegos de calidad y apoyar proyectos innovadores en la industria.</p>
-            <a href="#projects" class="cta-button">Ver Proyectos</a>
+            <h1 data-translate="hero_title">Creando Experiencias de Juego Inolvidables</h1>
+            <p data-translate="hero_subtitle">Dos empresas unidas por la pasión de desarrollar videojuegos de calidad y apoyar proyectos innovadores en la industria.</p>
+            <a href="#projects" class="cta-button" data-translate="hero_button">Ver Proyectos</a>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="container">
-        <h2 style="text-align: center; margin-bottom: 50px;">Nuestras Empresas</h2>
+        <h2 style="text-align: center; margin-bottom: 50px;" data-translate="about_title">Nuestras Empresas</h2>
         <div class="about">
             <!-- INTI Games Card -->
             <div class="company-card inti-card">
                 <img class="company-logo" src="https://iili.io/KZKTxFj.png" alt="INTI Games Logo" />
-                <h3>☀️ INTI Games Productions</h3>
-                <p><em>"Iluminando tus aventuras con la fuerza del Sol."</em></p>
-                <p>INTI Games Productions es una desarrolladora independiente de videojuegos fundada en 2020 en Trujillo, Perú. Nuestro nombre une "INTI" (Sol en Quechua) y "Games" (Juego en inglés), reflejando nuestras raíces andinas y nuestra pasión por crear mundos interactivos.</p>
+                <h3>☀️ <span data-translate="inti_title">INTI Games Productions</span></h3>
+                <p><em data-translate="inti_tagline">"Iluminando tus aventuras con la fuerza del Sol."</em></p>
+                <p data-translate="inti_description">INTI Games Productions es una desarrolladora independiente de videojuegos fundada en 2020 en Trujillo, Perú. Nuestro nombre une "INTI" (Sol en Quechua) y "Games" (Juego en inglés), reflejando nuestras raíces andinas y nuestra pasión por crear mundos interactivos.</p>
                 
-                <h4>Misión</h4>
-                <p>Crear videojuegos de calidad con estándares AAA, ofreciendo experiencias inmersivas en géneros como misterio, acción, supervivencia y terror.</p>
+                <h4 data-translate="mission_title">Misión</h4>
+                <p data-translate="inti_mission">Crear videojuegos de calidad con estándares AAA, ofreciendo experiencias inmersivas en géneros como misterio, acción, supervivencia y terror.</p>
                 
-                <h4>Visión</h4>
-                <p>Ser reconocidos mundialmente como un pilar del desarrollo de videojuegos en Latinoamérica.</p>
+                <h4 data-translate="vision_title">Visión</h4>
+                <p data-translate="inti_vision">Ser reconocidos mundialmente como un pilar del desarrollo de videojuegos en Latinoamérica.</p>
                 
-                <h4>Valores</h4>
+                <h4 data-translate="values_title">Valores</h4>
                 <ul class="values-list">
-                    <li>🎨 Creatividad: Innovamos en cada historia y diseño.</li>
-                    <li>🤝 Compromiso: Entregamos productos de alta calidad.</li>
-                    <li>🔥 Pasión: Vivimos y transmitimos el amor por los videojuegos.</li>
-                    <li>🏔️ Cultura: Honramos nuestras raíces andinas y las compartimos con el mundo.</li>
+                    <li>🎨 <span data-translate="value_creativity">Creatividad: Innovamos en cada historia y diseño.</span></li>
+                    <li>🤝 <span data-translate="value_commitment">Compromiso: Entregamos productos de alta calidad.</span></li>
+                    <li>🔥 <span data-translate="value_passion">Pasión: Vivimos y transmitimos el amor por los videojuegos.</span></li>
+                    <li>🏔️ <span data-translate="value_culture">Cultura: Honramos nuestras raíces andinas y las compartimos con el mundo.</span></li>
                 </ul>
             </div>
 
             <!-- WBStudios Card -->
             <div class="company-card wb-card">
                 <img class="company-logo" src="https://iili.io/KZKTzcx.png" alt="WBStudios Logo" />
-                <h3>🎮 WBStudios Games</h3>
-                <p>Se especializa en patrocinar proyectos de videojuegos, ofreciendo asesoría en marketing y desarrollo completo del videojuego, con un enfoque en impulsar la innovación en videojuegos, tecnologías y aplicaciones.</p>
+                <h3>🎮 <span data-translate="wb_title">WBStudios Games</span></h3>
+                <p data-translate="wb_description">Se especializa en patrocinar proyectos de videojuegos, ofreciendo asesoría en marketing y desarrollo completo del videojuego, con un enfoque en impulsar la innovación en videojuegos, tecnologías y aplicaciones.</p>
                 
-                <h4>Servicios</h4>
+                <h4 data-translate="services_title">Servicios</h4>
                 <ul class="values-list">
-                    <li>🎮 Desarrollo de videojuegos</li>
-                    <li>📱 Tecnologías móviles y apps</li>
-                    <li>📢 Contenido digital relacionado</li>
+                    <li>🎮 <span data-translate="service_games">Desarrollo de videojuegos</span></li>
+                    <li>📱 <span data-translate="service_mobile">Tecnologías móviles y apps</span></li>
+                    <li>📢 <span data-translate="service_content">Contenido digital relacionado</span></li>
                 </ul>
                 
-                <p><strong>¿Tienes un proyecto personal o profesional que necesita apoyo?</strong></p>
-                <p>Contáctanos por redes sociales y evaluaremos tu propuesta.</p>
+                <p><strong data-translate="project_question">¿Tienes un proyecto personal o profesional que necesita apoyo?</strong></p>
+                <p data-translate="project_invitation">Contáctanos por redes sociales y evaluaremos tu propuesta.</p>
             </div>
         </div>
     </section>
@@ -926,7 +994,7 @@
         </div>
         <div class="projects-overlay"></div>
         <div class="container">
-            <h2>Nuestros Proyectos</h2>
+            <h2 data-translate="projects_title">Nuestros Proyectos</h2>
             <div class="projects-container">
                 <!-- Poveglia Project -->
                 <div class="project-card">
@@ -960,10 +1028,10 @@
                     </div>
                     
                     <div class="project-content">
-                        <span class="status in-development">En Desarrollo</span>
+                        <span class="status in-development" data-translate="status_development">En Desarrollo</span>
                         <h3>Poveglia</h3>
-                        <p>Visita uno de los lugares más oscuros de Italia donde cientos de almas fueron olvidadas en el tiempo. Tras una aclamada carrera como investigador privado, el detective William Miller acepta un último caso; la desaparición de la familia Pierangelli, la cual ha sido misterio por más de treinta años.</p>
-                        <a class="project-button" href="https://wbstudiosgames.github.io/Poveglia/" target="_blank" rel="noopener">Ver Página Oficial</a>
+                        <p data-translate="poveglia_description">Visita uno de los lugares más oscuros de Italia donde cientos de almas fueron olvidadas en el tiempo. Tras una aclamada carrera como investigador privado, el detective William Miller acepta un último caso; la desaparición de la familia Pierangelli, la cual ha sido misterio por más de treinta años.</p>
+                        <a class="project-button" href="https://wbstudiosgames.github.io/Poveglia/" target="_blank" rel="noopener" data-translate="button_official">Ver Página Oficial</a>
                     </div>
                 </div>
 
@@ -997,10 +1065,10 @@
                     </div>
                     
                     <div class="project-content">
-                        <span class="status in-waiting">En Espera</span>
+                        <span class="status in-waiting" data-translate="status_waiting">En Espera</span>
                         <h3>Sinister Soul</h3>
-                        <p>En Sinister Soul, encarnas a Jhon, quien, en un viaje nocturno para ver a su familia, es forzado a adentrarse en Zoar, un pueblo desolado y maldito. Enfrenta una entidad misteriosa y enemigos aterradores usando objetos extraños. ¿Tendrás la agilidad para sobrevivir?</p>
-                        <a class="project-button" href="https://store.steampowered.com/app/2298740/Sinister_Soul_The_Cursed_Forest/" target="_blank" rel="noopener">Ver en Steam</a>
+                        <p data-translate="sinister_description">En Sinister Soul, encarnas a Jhon, quien, en un viaje nocturno para ver a su familia, es forzado a adentrarse en Zoar, un pueblo desolado y maldito. Enfrenta una entidad misteriosa y enemigos aterradores usando objetos extraños. ¿Tendrás la agilidad para sobrevivir?</p>
+                        <a class="project-button" href="https://store.steampowered.com/app/2298740/Sinister_Soul_The_Cursed_Forest/" target="_blank" rel="noopener" data-translate="button_steam">Ver en Steam</a>
                     </div>
                 </div>
             </div>
@@ -1010,8 +1078,8 @@
     <!-- Courses Section -->
     <section id="courses" class="courses">
         <div class="container">
-            <h2>🎓 Cursos por Willians Benites </h2>
-            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <h2 data-translate="courses_title">🎓 Cursos por Willians Benites — De Cero a Pro</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;" data-translate="courses_subtitle">
                 ¿Quieres aprender a crear videojuegos con Unreal Engine desde cero o mejorar tus habilidades como desarrollador? 
                 Aquí tienes dos cursos diseñados para ayudarte a avanzar paso a paso, con enfoque práctico y directo al grano:
             </p>
@@ -1021,15 +1089,15 @@
                     <div class="course-video-container">
                         <video class="course-video" controls>
                             <source src="https://mp4-c.udemycdn.com/2020-10-06_04-27-40-c50021f4497840cda9843c712dcb545b/1/WebHD_720p.mp4?Expires=1762434847&Signature=yRMaaQNaBMVEPjn0M5TPYtuQ5Bo8egprW8gzE1~71c37YFvytddG1QOil4SPz3msMxzMT4AJrpC3UpIozfgTEXoQo-EdQWo0-fAUpms8brlF4VFK48KzLumkkKPUw0-0SFT6yeYPyM2ZW3w0wEgD~sPAypx-rY4Is6mAfpFx216RGpN7v4g45y-yjV-0fpZ7hXP8AtHjET4ycXGB40CWHzqmLxf71rc3YEQRPB2JScVxA4MesB5nj-vGH-NGD1EomPgjNqGz--O5ggAXLG3LJVHlpKVZuRNjsOhH4~Fhanj-muEx5mMZcNMgFqY2KtWS9SedyoW9OqlXwlvXnyPO1w__&Key-Pair-Id=K3MG148K9RIRF4" type="video/mp4">
-                            Tu navegador no soporta el elemento de video.
+                            <span data-translate="video_unsupported">Tu navegador no soporta el elemento de video.</span>
                         </video>
                     </div>
                     <div class="course-content">
-                        <span class="course-badge">🟢 Curso 1</span>
-                        <h3>Creando un videojuego lateral desde cero en Unreal Engine 4</h3>
-                        <p><strong>📘 Ideal para principiantes que quieren entender el flujo completo de desarrollo.</strong></p>
-                        <p>Aprende a crear un juego completo desde cero, incluyendo mecánicas, niveles, IA y más. Perfecto para quienes están comenzando en el desarrollo de videojuegos.</p>
-                        <a class="course-button" href="https://www.udemy.com/course/creando-un-video-juego-lateral-desde-0-en-unreal-engine-4/" target="_blank" rel="noopener">Ver Curso en Udemy</a>
+                        <span class="course-badge" data-translate="course_1_badge">🟢 Curso 1</span>
+                        <h3 data-translate="course_1_title">Creando un videojuego lateral desde cero en Unreal Engine 4</h3>
+                        <p><strong data-translate="course_1_description">📘 Ideal para principiantes que quieren entender el flujo completo de desarrollo.</strong></p>
+                        <p data-translate="course_1_details">Aprende a crear un juego completo desde cero, incluyendo mecánicas, niveles, IA y más. Perfecto para quienes están comenzando en el desarrollo de videojuegos.</p>
+                        <a class="course-button" href="https://www.udemy.com/course/creando-un-video-juego-lateral-desde-0-en-unreal-engine-4/" target="_blank" rel="noopener" data-translate="button_course">Ver Curso en Udemy</a>
                     </div>
                 </div>
 
@@ -1038,21 +1106,21 @@
                     <div class="course-video-container">
                         <video class="course-video" controls>
                             <source src="https://mp4-c.udemycdn.com/2023-03-17_14-39-29-63d93ed17950cf5249460012badf7b4e/2/WebHD_720p.mp4?Expires=1762434935&Signature=MHUF~o5UtLxLpT~FsbpoVk8S663Qg9Ai~nIuJKoS44-gNBakZI61Wd5KOd-4IuPK24nawQmGf2zhAD8q3CAxbi41OXtlUR~sOHeoQ9qxW1dRvj7BdSQ~XqcBtedNARGrBIxy1QUUlgRILJxlpUZ8MPWfT4ZjaR~~-9PMJiAD~pvCyGqufebI0vTATMGa3Op9MbaoX4VvZFi7bnFtZQSyBAaRuvombpb82g1EG5FnMw~InThHHfgP7bjCO~7VvMASoKeDhg1hNMtJkkMzdKlTauBCY9FC1HOOOGckxunsapo63MNWeGhS-nv7dKafYtcB~PJyb3pAXjikygM3u4hlVQ__&Key-Pair-Id=K3MG148K9RIRF4" type="video/mp4">
-                            Tu navegador no soporta el elemento de video.
+                            <span data-translate="video_unsupported">Tu navegador no soporta el elemento de video.</span>
                         </video>
                     </div>
                     <div class="course-content">
-                        <span class="course-badge">🌿 Curso 2</span>
-                        <h3>Diseño de entornos en Unreal Engine 5 (Español)</h3>
-                        <p><strong>🎨 Aprende a construir escenarios visualmente impactantes y optimizados para UE5.</strong></p>
-                        <p>Domina las técnicas profesionales para crear entornos impresionantes en Unreal Engine 5. Incluye iluminación, materiales, paisajes y optimización.</p>
-                        <a class="course-button" href="https://www.udemy.com/course/unreal-engine-5-environment-design-espanol/" target="_blank" rel="noopener">Ver Curso en Udemy</a>
+                        <span class="course-badge" data-translate="course_2_badge">🌿 Curso 2</span>
+                        <h3 data-translate="course_2_title">Diseño de entornos en Unreal Engine 5 (Español)</h3>
+                        <p><strong data-translate="course_2_description">🎨 Aprende a construir escenarios visualmente impactantes y optimizados para UE5.</strong></p>
+                        <p data-translate="course_2_details">Domina las técnicas profesionales para crear entornos impresionantes en Unreal Engine 5. Incluye iluminación, materiales, paisajes y optimización.</p>
+                        <a class="course-button" href="https://www.udemy.com/course/unreal-engine-5-environment-design-espanol/" target="_blank" rel="noopener" data-translate="button_course">Ver Curso en Udemy</a>
                     </div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 30px;">
-                <p><strong>📌 Todos los cursos están en español y pensados para desarrolladores hispanohablantes.</strong></p>
-                <p>📣 Si tienes dudas o quieres compartir tu progreso, usa el Discord https://discord.com/invite/VZ9bv9Fpw8 </p>
+                <p><strong data-translate="courses_note_1">📌 Todos los cursos están en español y pensados para desarrolladores hispanohablantes.</strong></p>
+                <p data-translate="courses_note_2">📣 Si tienes dudas o quieres compartir tu progreso, usa el canal ⁠🚒┊ayuda-ue5 o ⁠💡┊tu-proyecto.</p>
             </div>
         </div>
     </section>
@@ -1060,8 +1128,8 @@
     <!-- Store Section -->
     <section id="store" class="store">
         <div class="container">
-            <h2>🛒 Tienda - Assets Profesionales</h2>
-            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <h2 data-translate="store_title">🛒 Tienda - Assets Profesionales</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;" data-translate="store_subtitle">
                 Descubre nuestros assets profesionales para Unreal Engine, diseñados para acelerar tu desarrollo y llevar tus proyectos al siguiente nivel.
             </p>
             <div class="store-container">
@@ -1069,23 +1137,23 @@
                 <div class="store-card">
                     <div class="store-image" style="background-image: url('https://media.discordapp.net/attachments/1425258914009845760/1425269491574509608/dddddddddddddddd.jpg?ex=690d34a7&is=690be327&hm=0227acc5d47d892eda85099e99d8c4cc3f14d864bc33deac66def0221015ee7c&=&format=webp')"></div>
                     <div class="store-content">
-                        <span class="store-badge">🎼 Battle Sound System V2</span>
-                        <h3>Sistema Musical AAA para Batallas Épicas</h3>
-                        <p>Ya reconocido en varios juegos por su fácil implementación, este sistema te permite añadir música dinámica a tus combates en tercera o primera persona con solo unos clics.</p>
+                        <span class="store-badge" data-translate="product_1_badge">🎼 Battle Sound System V2</span>
+                        <h3 data-translate="product_1_title">Sistema Musical AAA para Batallas Épicas</h3>
+                        <p data-translate="product_1_description">Ya reconocido en varios juegos por su fácil implementación, este sistema te permite añadir música dinámica a tus combates en tercera o primera persona con solo unos clics.</p>
                         
-                        <h4>🆕 Actualización V2</h4>
-                        <p>Incluye el blueprint SongChanger, que te permite activar música ambiental por secciones o de forma global.</p>
+                        <h4 data-translate="product_1_update">🆕 Actualización V2</h4>
+                        <p data-translate="product_1_features">Incluye el blueprint SongChanger, que te permite activar música ambiental por secciones o de forma global.</p>
                         
                         <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li>🧩 Por sección: arrastra el blueprint a una sala y asigna el número de pista</li>
-                            <li>🌐 Global: activa la variable booleana Enable Music Ambient</li>
-                            <li>🎓 Tutorial en español incluido</li>
-                            <li>📦 Video tutorial de implementación y soporte directo</li>
+                            <li data-translate="feature_section">🧩 Por sección: arrastra el blueprint a una sala y asigna el número de pista</li>
+                            <li data-translate="feature_global">🌐 Global: activa la variable booleana Enable Music Ambient</li>
+                            <li data-translate="feature_tutorial">🎓 Tutorial en español incluido</li>
+                            <li data-translate="feature_support">📦 Video tutorial de implementación y soporte directo</li>
                         </ul>
                         
-                        <p><strong>💥 Ideal para:</strong> Juegos de acción con combates intensos, proyectos que buscan experiencia sonora tipo AAA, desarrolladores que quieren resultados rápidos y profesionales.</p>
+                        <p><strong data-translate="ideal_for">💥 Ideal para:</strong> <span data-translate="product_1_ideal">Juegos de acción con combates intensos, proyectos que buscan experiencia sonora tipo AAA, desarrolladores que quieren resultados rápidos y profesionales.</span></p>
                         
-                        <a class="store-button" href="https://www.fab.com/es-mx/listings/cea21486-ce6d-4bad-8b71-e6b0d21edf70" target="_blank" rel="noopener">Ver en FAB</a>
+                        <a class="store-button" href="https://www.fab.com/es-mx/listings/cea21486-ce6d-4bad-8b71-e6b0d21edf70" target="_blank" rel="noopener" data-translate="button_fab">Ver en FAB</a>
                     </div>
                 </div>
 
@@ -1093,23 +1161,23 @@
                 <div class="store-card">
                     <div class="store-image" style="background-image: url('https://media.discordapp.net/attachments/1425258914009845760/1425270163858526290/traduc.jpg?ex=690d3547&is=690be3c7&hm=9bfbfdf31252f6fe8623b24410f66409b951b810ba0c7fc0607c17d9d5fd7b23&=&format=webp&width=1522&height=856')"></div>
                     <div class="store-content">
-                        <span class="store-badge">🌍 Sistema de Traducción + Subtítulos con Voz</span>
-                        <h3>Traduce tu juego a 15 idiomas con subtítulos y voces integradas</h3>
-                        <p>Desarrollado en Unreal Engine y compatible con todas sus versiones, este sistema lleva la accesibilidad y experiencia del jugador a otro nivel.</p>
+                        <span class="store-badge" data-translate="product_2_badge">🌍 Sistema de Traducción + Subtítulos con Voz</span>
+                        <h3 data-translate="product_2_title">Traduce tu juego a 15 idiomas con subtítulos y voces integradas</h3>
+                        <p data-translate="product_2_description">Desarrollado en Unreal Engine y compatible con todas sus versiones, este sistema lleva la accesibilidad y experiencia del jugador a otro nivel.</p>
                         
-                        <h4>Características destacadas:</h4>
+                        <h4 data-translate="features_title">Características destacadas:</h4>
                         <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li>🌐 Traducción multilingüe: compatible con los 15 idiomas más hablados</li>
-                            <li>🎙️ Subtítulos con audio: integra voces en diferentes idiomas</li>
-                            <li>⚡ Extensible y fácil de usar: traduce menús, logos y audios</li>
-                            <li>📚 Documentación completa: tutoriales en video y soporte en Discord</li>
-                            <li>🔄 Actualizaciones constantes: nuevas funciones y mejoras</li>
-                            <li>📊 Gestión desde Excel o Google Drive</li>
+                            <li data-translate="feature_multilingual">🌐 Traducción multilingüe: compatible con los 15 idiomas más hablados</li>
+                            <li data-translate="feature_subtitles">🎙️ Subtítulos con audio: integra voces en diferentes idiomas</li>
+                            <li data-translate="feature_easy">⚡ Extensible y fácil de usar: traduce menús, logos y audios</li>
+                            <li data-translate="feature_docs">📚 Documentación completa: tutoriales en video y soporte en Discord</li>
+                            <li data-translate="feature_updates">🔄 Actualizaciones constantes: nuevas funciones y mejoras</li>
+                            <li data-translate="feature_management">📊 Gestión desde Excel o Google Drive</li>
                         </ul>
                         
-                        <p>Traduce tu juego sin complicaciones, incluso si nunca lo has hecho antes. ¡Es rápido, eficiente y profesional!</p>
+                        <p data-translate="product_2_conclusion">Traduce tu juego sin complicaciones, incluso si nunca lo has hecho antes. ¡Es rápido, eficiente y profesional!</p>
                         
-                        <a class="store-button" href="https://www.fab.com/es-mx/listings/c9f7ac63-ef66-4034-88e3-fb9037cb54a0" target="_blank" rel="noopener">Ver en FAB</a>
+                        <a class="store-button" href="https://www.fab.com/es-mx/listings/c9f7ac63-ef66-4034-88e3-fb9037cb54a0" target="_blank" rel="noopener" data-translate="button_fab">Ver en FAB</a>
                     </div>
                 </div>
             </div>
@@ -1119,10 +1187,10 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 50px;">Contáctanos</h2>
+            <h2 style="text-align: center; margin-bottom: 50px;" data-translate="contact_title">Contáctanos</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>INTI Games Productions</h3>
+                    <h3 data-translate="inti_contact">INTI Games Productions</h3>
                     <p>📧 intiproductionsgames@gmail.com</p>
                     <div class="social-links">
                         <a class="social-link" href="https://www.facebook.com/intigamesproductions/" target="_blank" rel="noopener">Facebook</a>
@@ -1132,7 +1200,7 @@
                         <a class="social-link" href="https://www.linkedin.com/company/inti-games-pro/" target="_blank" rel="noopener">LinkedIn</a>
                     </div>
 
-                    <h3 style="margin-top: 30px;">WBStudios Games</h3>
+                    <h3 style="margin-top: 30px;" data-translate="wb_contact">WBStudios Games</h3>
                     <p>📧 wbstudiosgames@gmail.com</p>
                     <div class="social-links">
                         <a class="social-link" href="https://pe.linkedin.com/company/wbstudiosgames" target="_blank" rel="noopener">LinkedIn</a>
@@ -1147,15 +1215,15 @@
 
                 <div class="contact-info">
                     <div class="email-contact">
-                        <h3>¿Tienes un proyecto?</h3>
-                        <p>Si tienes un proyecto de videojuego que necesita apoyo, no dudes en contactarnos directamente por correo electrónico:</p>
+                        <h3 data-translate="project_inquiry">¿Tienes un proyecto?</h3>
+                        <p data-translate="project_invitation_detail">Si tienes un proyecto de videojuego que necesita apoyo, no dudes en contactarnos directamente por correo electrónico:</p>
                         <p class="email-address">wbstudiosgames@gmail.com</p>
-                        <p>Evaluaremos tu propuesta y te responderemos a la brevedad posible.</p>
+                        <p data-translate="project_response">Evaluaremos tu propuesta y te responderemos a la brevedad posible.</p>
                     </div>
                     
                     <div class="email-contact" style="margin-top: 20px;">
-                        <h3>Para consultas sobre desarrollo</h3>
-                        <p>Si tienes preguntas específicas sobre el desarrollo de nuestros juegos, puedes contactar a:</p>
+                        <h3 data-translate="dev_inquiry">Para consultas sobre desarrollo</h3>
+                        <p data-translate="dev_invitation">Si tienes preguntas específicas sobre el desarrollo de nuestros juegos, puedes contactar a:</p>
                         <p class="email-address">intiproductionsgames@gmail.com</p>
                     </div>
                 </div>
@@ -1166,12 +1234,533 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 INTI Games Productions &amp; WBStudios Games. Todos los derechos reservados.</p>
-            <p>Desarrollando el futuro de los videojuegos desde Perú.</p>
+            <p>&copy; 2025 INTI Games Productions &amp; WBStudios Games. <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
+            <p data-translate="footer_developing">Desarrollando el futuro de los videojuegos desde Perú.</p>
         </div>
     </footer>
 
     <script>
+        // Sistema de Traducción
+        const translations = {
+            es: {
+                // Navegación
+                "nav_about": "Nosotros",
+                "nav_projects": "Proyectos",
+                "nav_courses": "Cursos",
+                "nav_store": "Tienda",
+                "nav_contact": "Contacto",
+                
+                // Hero
+                "hero_title": "Creando Experiencias de Juego Inolvidables",
+                "hero_subtitle": "Dos empresas unidas por la pasión de desarrollar videojuegos de calidad y apoyar proyectos innovadores en la industria.",
+                "hero_button": "Ver Proyectos",
+                
+                // About
+                "about_title": "Nuestras Empresas",
+                "inti_title": "INTI Games Productions",
+                "inti_tagline": "\"Iluminando tus aventuras con la fuerza del Sol.\"",
+                "inti_description": "INTI Games Productions es una desarrolladora independiente de videojuegos fundada en 2020 en Trujillo, Perú. Nuestro nombre une \"INTI\" (Sol en Quechua) y \"Games\" (Juego en inglés), reflejando nuestras raíces andinas y nuestra pasión por crear mundos interactivos.",
+                "mission_title": "Misión",
+                "inti_mission": "Crear videojuegos de calidad con estándares AAA, ofreciendo experiencias inmersivas en géneros como misterio, acción, supervivencia y terror.",
+                "vision_title": "Visión",
+                "inti_vision": "Ser reconocidos mundialmente como un pilar del desarrollo de videojuegos en Latinoamérica.",
+                "values_title": "Valores",
+                "value_creativity": "Creatividad: Innovamos en cada historia y diseño.",
+                "value_commitment": "Compromiso: Entregamos productos de alta calidad.",
+                "value_passion": "Pasión: Vivimos y transmitimos el amor por los videojuegos.",
+                "value_culture": "Cultura: Honramos nuestras raíces andinas y las compartimos con el mundo.",
+                
+                "wb_title": "WBStudios Games",
+                "wb_description": "Se especializa en patrocinar proyectos de videojuegos, ofreciendo asesoría en marketing y desarrollo completo del videojuego, con un enfoque en impulsar la innovación en videojuegos, tecnologías y aplicaciones.",
+                "services_title": "Servicios",
+                "service_games": "Desarrollo de videojuegos",
+                "service_mobile": "Tecnologías móviles y apps",
+                "service_content": "Contenido digital relacionado",
+                "project_question": "¿Tienes un proyecto personal o profesional que necesita apoyo?",
+                "project_invitation": "Contáctanos por redes sociales y evaluaremos tu propuesta.",
+                
+                // Projects
+                "projects_title": "Nuestros Proyectos",
+                "status_development": "En Desarrollo",
+                "status_waiting": "En Espera",
+                "poveglia_description": "Visita uno de los lugares más oscuros de Italia donde cientos de almas fueron olvidadas en el tiempo. Tras una aclamada carrera como investigador privado, el detective William Miller acepta un último caso; la desaparición de la familia Pierangelli, la cual ha sido misterio por más de treinta años.",
+                "sinister_description": "En Sinister Soul, encarnas a Jhon, quien, en un viaje nocturno para ver a su familia, es forzado a adentrarse en Zoar, un pueblo desolado y maldito. Enfrenta una entidad misteriosa y enemigos aterradores usando objetos extraños. ¿Tendrás la agilidad para sobrevivir?",
+                "button_official": "Ver Página Oficial",
+                "button_steam": "Ver en Steam",
+                
+                // Courses
+                "courses_title": "🎓 Cursos por Willians Benites — De Cero a Pro",
+                "courses_subtitle": "¿Quieres aprender a crear videojuegos con Unreal Engine desde cero o mejorar tus habilidades como desarrollador? Aquí tienes dos cursos diseñados para ayudarte a avanzar paso a paso, con enfoque práctico y directo al grano:",
+                "course_1_badge": "🟢 Curso 1",
+                "course_1_title": "Creando un videojuego lateral desde cero en Unreal Engine 4",
+                "course_1_description": "📘 Ideal para principiantes que quieren entender el flujo completo de desarrollo.",
+                "course_1_details": "Aprende a crear un juego completo desde cero, incluyendo mecánicas, niveles, IA y más. Perfecto para quienes están comenzando en el desarrollo de videojuegos.",
+                "course_2_badge": "🌿 Curso 2",
+                "course_2_title": "Diseño de entornos en Unreal Engine 5 (Español)",
+                "course_2_description": "🎨 Aprende a construir escenarios visualmente impactantes y optimizados para UE5.",
+                "course_2_details": "Domina las técnicas profesionales para crear entornos impresionantes en Unreal Engine 5. Incluye iluminación, materiales, paisajes y optimización.",
+                "button_course": "Ver Curso en Udemy",
+                "courses_note_1": "📌 Todos los cursos están en español y pensados para desarrolladores hispanohablantes.",
+                "courses_note_2": "📣 Si tienes dudas o quieres compartir tu progreso, usa el canal ⁠🚒┊ayuda-ue5 o ⁠💡┊tu-proyecto.",
+                
+                // Store
+                "store_title": "🛒 Tienda - Assets Profesionales",
+                "store_subtitle": "Descubre nuestros assets profesionales para Unreal Engine, diseñados para acelerar tu desarrollo y llevar tus proyectos al siguiente nivel.",
+                "product_1_badge": "🎼 Battle Sound System V2",
+                "product_1_title": "Sistema Musical AAA para Batallas Épicas",
+                "product_1_description": "Ya reconocido en varios juegos por su fácil implementación, este sistema te permite añadir música dinámica a tus combates en tercera o primera persona con solo unos clics.",
+                "product_1_update": "🆕 Actualización V2",
+                "product_1_features": "Incluye el blueprint SongChanger, que te permite activar música ambiental por secciones o de forma global.",
+                "feature_section": "🧩 Por sección: arrastra el blueprint a una sala y asigna el número de pista",
+                "feature_global": "🌐 Global: activa la variable booleana Enable Music Ambient",
+                "feature_tutorial": "🎓 Tutorial en español incluido",
+                "feature_support": "📦 Video tutorial de implementación y soporte directo",
+                "ideal_for": "💥 Ideal para:",
+                "product_1_ideal": "Juegos de acción con combates intensos, proyectos que buscan experiencia sonora tipo AAA, desarrolladores que quieren resultados rápidos y profesionales.",
+                "button_fab": "Ver en FAB",
+                
+                "product_2_badge": "🌍 Sistema de Traducción + Subtítulos con Voz",
+                "product_2_title": "Traduce tu juego a 15 idiomas con subtítulos y voces integradas",
+                "product_2_description": "Desarrollado en Unreal Engine y compatible con todas sus versiones, este sistema lleva la accesibilidad y experiencia del jugador a otro nivel.",
+                "features_title": "Características destacadas:",
+                "feature_multilingual": "🌐 Traducción multilingüe: compatible con los 15 idiomas más hablados",
+                "feature_subtitles": "🎙️ Subtítulos con audio: integra voces en diferentes idiomas",
+                "feature_easy": "⚡ Extensible y fácil de usar: traduce menús, logos y audios",
+                "feature_docs": "📚 Documentación completa: tutoriales en video y soporte en Discord",
+                "feature_updates": "🔄 Actualizaciones constantes: nuevas funciones y mejoras",
+                "feature_management": "📊 Gestión desde Excel o Google Drive",
+                "product_2_conclusion": "Traduce tu juego sin complicaciones, incluso si nunca lo has hecho antes. ¡Es rápido, eficiente y profesional!",
+                
+                // Contact
+                "contact_title": "Contáctanos",
+                "inti_contact": "INTI Games Productions",
+                "wb_contact": "WBStudios Games",
+                "project_inquiry": "¿Tienes un proyecto?",
+                "project_invitation_detail": "Si tienes un proyecto de videojuego que necesita apoyo, no dudes en contactarnos directamente por correo electrónico:",
+                "project_response": "Evaluaremos tu propuesta y te responderemos a la brevedad posible.",
+                "dev_inquiry": "Para consultas sobre desarrollo",
+                "dev_invitation": "Si tienes preguntas específicas sobre el desarrollo de nuestros juegos, puedes contactar a:",
+                
+                // Footer
+                "footer_rights": "Todos los derechos reservados.",
+                "footer_developing": "Desarrollando el futuro de los videojuegos desde Perú.",
+                
+                // General
+                "video_unsupported": "Tu navegador no soporta el elemento de video."
+            },
+            en: {
+                // Navegación
+                "nav_about": "About Us",
+                "nav_projects": "Projects",
+                "nav_courses": "Courses",
+                "nav_store": "Store",
+                "nav_contact": "Contact",
+                
+                // Hero
+                "hero_title": "Creating Unforgettable Gaming Experiences",
+                "hero_subtitle": "Two companies united by the passion to develop quality video games and support innovative projects in the industry.",
+                "hero_button": "View Projects",
+                
+                // About
+                "about_title": "Our Companies",
+                "inti_title": "INTI Games Productions",
+                "inti_tagline": "\"Illuminating your adventures with the power of the Sun.\"",
+                "inti_description": "INTI Games Productions is an independent video game developer founded in 2020 in Trujillo, Peru. Our name combines \"INTI\" (Sun in Quechua) and \"Games\" (Games in English), reflecting our Andean roots and our passion for creating interactive worlds.",
+                "mission_title": "Mission",
+                "inti_mission": "Create quality video games with AAA standards, offering immersive experiences in genres such as mystery, action, survival and horror.",
+                "vision_title": "Vision",
+                "inti_vision": "To be globally recognized as a pillar of video game development in Latin America.",
+                "values_title": "Values",
+                "value_creativity": "Creativity: We innovate in every story and design.",
+                "value_commitment": "Commitment: We deliver high quality products.",
+                "value_passion": "Passion: We live and transmit the love for video games.",
+                "value_culture": "Culture: We honor our Andean roots and share them with the world.",
+                
+                "wb_title": "WBStudios Games",
+                "wb_description": "Specializes in sponsoring video game projects, offering marketing advice and complete video game development, with a focus on driving innovation in video games, technologies and applications.",
+                "services_title": "Services",
+                "service_games": "Video game development",
+                "service_mobile": "Mobile technologies and apps",
+                "service_content": "Related digital content",
+                "project_question": "Do you have a personal or professional project that needs support?",
+                "project_invitation": "Contact us through social networks and we will evaluate your proposal.",
+                
+                // Projects
+                "projects_title": "Our Projects",
+                "status_development": "In Development",
+                "status_waiting": "On Hold",
+                "poveglia_description": "Visit one of the darkest places in Italy where hundreds of souls were forgotten in time. After an acclaimed career as a private investigator, detective William Miller accepts one last case; the disappearance of the Pierangelli family, which has been a mystery for over thirty years.",
+                "sinister_description": "In Sinister Soul, you play as Jhon, who, on a night trip to see his family, is forced to enter Zoar, a desolate and cursed town. Face a mysterious entity and terrifying enemies using strange objects. Will you have the agility to survive?",
+                "button_official": "View Official Page",
+                "button_steam": "View on Steam",
+                
+                // Courses
+                "courses_title": "🎓 Courses by Willians Benites — From Zero to Pro",
+                "courses_subtitle": "Do you want to learn how to create video games with Unreal Engine from scratch or improve your skills as a developer? Here are two courses designed to help you progress step by step, with a practical and straight-to-the-point approach:",
+                "course_1_badge": "🟢 Course 1",
+                "course_1_title": "Creating a side-scrolling video game from scratch in Unreal Engine 4",
+                "course_1_description": "📘 Ideal for beginners who want to understand the complete development flow.",
+                "course_1_details": "Learn to create a complete game from scratch, including mechanics, levels, AI and more. Perfect for those starting out in video game development.",
+                "course_2_badge": "🌿 Course 2",
+                "course_2_title": "Environment Design in Unreal Engine 5 (Spanish)",
+                "course_2_description": "🎨 Learn to build visually stunning and optimized scenarios for UE5.",
+                "course_2_details": "Master professional techniques to create impressive environments in Unreal Engine 5. Includes lighting, materials, landscapes and optimization.",
+                "button_course": "View Course on Udemy",
+                "courses_note_1": "📌 All courses are in Spanish and designed for Spanish-speaking developers.",
+                "courses_note_2": "📣 If you have questions or want to share your progress, use the ⁠🚒┊help-ue5 or ⁠💡┊your-project channels.",
+                
+                // Store
+                "store_title": "🛒 Store - Professional Assets",
+                "store_subtitle": "Discover our professional assets for Unreal Engine, designed to accelerate your development and take your projects to the next level.",
+                "product_1_badge": "🎼 Battle Sound System V2",
+                "product_1_title": "AAA Music System for Epic Battles",
+                "product_1_description": "Already recognized in several games for its easy implementation, this system allows you to add dynamic music to your third or first person combat with just a few clicks.",
+                "product_1_update": "🆕 V2 Update",
+                "product_1_features": "Includes the SongChanger blueprint, which allows you to activate ambient music by sections or globally.",
+                "feature_section": "🧩 By section: drag the blueprint to a room and assign the track number",
+                "feature_global": "🌐 Global: activate the Enable Music Ambient boolean variable",
+                "feature_tutorial": "🎓 Tutorial in Spanish included",
+                "feature_support": "📦 Implementation video tutorial and direct support",
+                "ideal_for": "💥 Ideal for:",
+                "product_1_ideal": "Action games with intense combat, projects seeking AAA sound experience, developers who want quick and professional results.",
+                "button_fab": "View on FAB",
+                
+                "product_2_badge": "🌍 Translation System + Subtitles with Voice",
+                "product_2_title": "Translate your game to 15 languages with integrated subtitles and voices",
+                "product_2_description": "Developed in Unreal Engine and compatible with all its versions, this system takes accessibility and player experience to another level.",
+                "features_title": "Key Features:",
+                "feature_multilingual": "🌐 Multilingual translation: compatible with the 15 most spoken languages",
+                "feature_subtitles": "🎙️ Subtitles with audio: integrates voices in different languages",
+                "feature_easy": "⚡ Extensible and easy to use: translates menus, logos and audio",
+                "feature_docs": "📚 Complete documentation: video tutorials and Discord support",
+                "feature_updates": "🔄 Constant updates: new functions and improvements",
+                "feature_management": "📊 Management from Excel or Google Drive",
+                "product_2_conclusion": "Translate your game without complications, even if you've never done it before. It's fast, efficient and professional!",
+                
+                // Contact
+                "contact_title": "Contact Us",
+                "inti_contact": "INTI Games Productions",
+                "wb_contact": "WBStudios Games",
+                "project_inquiry": "Do you have a project?",
+                "project_invitation_detail": "If you have a video game project that needs support, don't hesitate to contact us directly by email:",
+                "project_response": "We will evaluate your proposal and respond as soon as possible.",
+                "dev_inquiry": "For development inquiries",
+                "dev_invitation": "If you have specific questions about the development of our games, you can contact:",
+                
+                // Footer
+                "footer_rights": "All rights reserved.",
+                "footer_developing": "Developing the future of video games from Peru.",
+                
+                // General
+                "video_unsupported": "Your browser does not support the video element."
+            },
+            it: {
+                // Navegación
+                "nav_about": "Chi Siamo",
+                "nav_projects": "Progetti",
+                "nav_courses": "Corsi",
+                "nav_store": "Negozio",
+                "nav_contact": "Contatto",
+                
+                // Hero
+                "hero_title": "Creazione di Esperienze di Gioco Indimenticabili",
+                "hero_subtitle": "Due aziende unite dalla passione di sviluppare videogiochi di qualità e supportare progetti innovativi nel settore.",
+                "hero_button": "Vedi Progetti",
+                
+                // About
+                "about_title": "Le Nostre Aziende",
+                "inti_title": "INTI Games Productions",
+                "inti_tagline": "\"Illuminando le tue avventure con la forza del Sole.\"",
+                "inti_description": "INTI Games Productions è uno sviluppatore di videogiochi indipendente fondato nel 2020 a Trujillo, Perù. Il nostro nome unisce \"INTI\" (Sole in Quechua) e \"Games\" (Giochi in inglese), riflettendo le nostre radici andine e la nostra passione per creare mondi interattivi.",
+                "mission_title": "Missione",
+                "inti_mission": "Creare videogiochi di qualità con standard AAA, offrendo esperienze immersive in generi come mistero, azione, sopravvivenza e horror.",
+                "vision_title": "Visione",
+                "inti_vision": "Essere riconosciuti a livello mondiale come un pilastro dello sviluppo di videogiochi in America Latina.",
+                "values_title": "Valori",
+                "value_creativity": "Creatività: Innoviamo in ogni storia e design.",
+                "value_commitment": "Impegno: Consegniamo prodotti di alta qualità.",
+                "value_passion": "Passione: Viviamo e trasmettiamo l'amore per i videogiochi.",
+                "value_culture": "Cultura: Onoriamo le nostre radici andine e le condividiamo con il mondo.",
+                
+                "wb_title": "WBStudios Games",
+                "wb_description": "Specializzato nel sponsorizzare progetti di videogiochi, offrendo consulenza di marketing e sviluppo completo di videogiochi, con un focus sull'innovazione nei videogiochi, tecnologie e applicazioni.",
+                "services_title": "Servizi",
+                "service_games": "Sviluppo di videogiochi",
+                "service_mobile": "Tecnologie mobili e app",
+                "service_content": "Contenuto digitale correlato",
+                "project_question": "Hai un progetto personale o professionale che ha bisogno di supporto?",
+                "project_invitation": "Contattaci tramite i social network e valuteremo la tua proposta.",
+                
+                // Projects
+                "projects_title": "I Nostri Progetti",
+                "status_development": "In Sviluppo",
+                "status_waiting": "In Attesa",
+                "poveglia_description": "Visita uno dei luoghi più oscuri d'Italia dove centinaia di anime sono state dimenticate nel tempo. Dopo una carriera acclamata come investigatore privato, il detective William Miller accetta un ultimo caso; la scomparsa della famiglia Pierangelli, che è rimasta un mistero per oltre trent'anni.",
+                "sinister_description": "In Sinister Soul, interpreti Jhon, che, durante un viaggio notturno per vedere la sua famiglia, è costretto a entrare a Zoar, una città desolata e maledetta. Affronta un'entità misteriosa e nemici terrificanti usando oggetti strani. Avrai l'agilità per sopravvivere?",
+                "button_official": "Vedi Pagina Ufficiale",
+                "button_steam": "Vedi su Steam",
+                
+                // Courses
+                "courses_title": "🎓 Corsi di Willians Benites — Da Zero a Pro",
+                "courses_subtitle": "Vuoi imparare a creare videogiochi con Unreal Engine da zero o migliorare le tue abilità come sviluppatore? Ecco due corsi progettati per aiutarti a progredire passo dopo passo, con un approccio pratico e diretto:",
+                "course_1_badge": "🟢 Corso 1",
+                "course_1_title": "Creazione di un videogioco a scorrimento laterale da zero in Unreal Engine 4",
+                "course_1_description": "📘 Ideale per principianti che vogliono comprendere il flusso completo di sviluppo.",
+                "course_1_details": "Impara a creare un gioco completo da zero, incluse meccaniche, livelli, IA e altro. Perfetto per chi inizia nello sviluppo di videogiochi.",
+                "course_2_badge": "🌿 Corso 2",
+                "course_2_title": "Design degli ambienti in Unreal Engine 5 (Spagnolo)",
+                "course_2_description": "🎨 Impara a costruire scenari visivamente sorprendenti e ottimizzati per UE5.",
+                "course_2_details": "Padroneggia tecniche professionali per creare ambienti impressionanti in Unreal Engine 5. Include illuminazione, materiali, paesaggi e ottimizzazione.",
+                "button_course": "Vedi Corso su Udemy",
+                "courses_note_1": "📌 Tutti i corsi sono in spagnolo e pensati per sviluppatori di lingua spagnola.",
+                "courses_note_2": "📣 Se hai domande o vuoi condividere i tuoi progressi, usa i canali ⁠🚒┊aiuto-ue5 o ⁠💡┊tuo-progetto.",
+                
+                // Store
+                "store_title": "🛒 Negozio - Asset Professionali",
+                "store_subtitle": "Scopri i nostri asset professionali per Unreal Engine, progettati per accelerare il tuo sviluppo e portare i tuoi progetti al livello successivo.",
+                "product_1_badge": "🎼 Battle Sound System V2",
+                "product_1_title": "Sistema Musicale AAA per Battaglie Epiche",
+                "product_1_description": "Già riconosciuto in diversi giochi per la sua facile implementazione, questo sistema ti permette di aggiungere musica dinamica ai tuoi combattimenti in terza o prima persona con pochi clic.",
+                "product_1_update": "🆕 Aggiornamento V2",
+                "product_1_features": "Include la blueprint SongChanger, che ti permette di attivare musica ambientale per sezioni o globalmente.",
+                "feature_section": "🧩 Per sezione: trascina la blueprint in una stanza e assegna il numero della traccia",
+                "feature_global": "🌐 Globale: attiva la variabile booleana Enable Music Ambient",
+                "feature_tutorial": "🎓 Tutorial in spagnolo incluso",
+                "feature_support": "📦 Tutorial video di implementazione e supporto diretto",
+                "ideal_for": "💥 Ideale per:",
+                "product_1_ideal": "Giochi d'azione con combattimenti intensi, progetti che cercano esperienza sonora di tipo AAA, sviluppatori che vogliono risultati rapidi e professionali.",
+                "button_fab": "Vedi su FAB",
+                
+                "product_2_badge": "🌍 Sistema di Traduzione + Sottotitoli con Voce",
+                "product_2_title": "Traduci il tuo gioco in 15 lingue con sottotitoli e voci integrate",
+                "product_2_description": "Sviluppato in Unreal Engine e compatibile con tutte le sue versioni, questo sistema porta accessibilità ed esperienza del giocatore a un altro livello.",
+                "features_title": "Caratteristiche Principali:",
+                "feature_multilingual": "🌐 Traduzione multilingue: compatibile con le 15 lingue più parlate",
+                "feature_subtitles": "🎙️ Sottotitoli con audio: integra voci in diverse lingue",
+                "feature_easy": "⚡ Estensibile e facile da usare: traduce menu, loghi e audio",
+                "feature_docs": "📚 Documentazione completa: tutorial video e supporto Discord",
+                "feature_updates": "🔄 Aggiornamenti costanti: nuove funzioni e miglioramenti",
+                "feature_management": "📊 Gestione da Excel o Google Drive",
+                "product_2_conclusion": "Traduci il tuo gioco senza complicazioni, anche se non l'hai mai fatto prima. È veloce, efficiente e professionale!",
+                
+                // Contact
+                "contact_title": "Contattaci",
+                "inti_contact": "INTI Games Productions",
+                "wb_contact": "WBStudios Games",
+                "project_inquiry": "Hai un progetto?",
+                "project_invitation_detail": "Se hai un progetto di videogioco che ha bisogno di supporto, non esitare a contattarci direttamente via email:",
+                "project_response": "Valuteremo la tua proposta e risponderemo il prima possibile.",
+                "dev_inquiry": "Per consultazioni sullo sviluppo",
+                "dev_invitation": "Se hai domande specifiche sullo sviluppo dei nostri giochi, puoi contattare:",
+                
+                // Footer
+                "footer_rights": "Tutti i diritti riservati.",
+                "footer_developing": "Sviluppando il futuro dei videogiochi dal Perù.",
+                
+                // General
+                "video_unsupported": "Il tuo browser non supporta l'elemento video."
+            },
+            de: {
+                // Navegación
+                "nav_about": "Über Uns",
+                "nav_projects": "Projekte",
+                "nav_courses": "Kurse",
+                "nav_store": "Shop",
+                "nav_contact": "Kontakt",
+                
+                // Hero
+                "hero_title": "Erstellung unvergesslicher Spielerlebnisse",
+                "hero_subtitle": "Zwei Unternehmen, vereint durch die Leidenschaft, qualitativ hochwertige Videospiele zu entwickeln und innovative Projekte in der Branche zu unterstützen.",
+                "hero_button": "Projekte ansehen",
+                
+                // About
+                "about_title": "Unsere Unternehmen",
+                "inti_title": "INTI Games Productions",
+                "inti_tagline": "\"Erleuchten Sie Ihre Abenteuer mit der Kraft der Sonne.\"",
+                "inti_description": "INTI Games Productions ist ein unabhängiger Videospielentwickler, der 2020 in Trujillo, Peru, gegründet wurde. Unser Name vereint \"INTI\" (Sonne auf Quechua) und \"Games\" (Spiele auf Englisch) und spiegelt unsere andinen Wurzeln und unsere Leidenschaft für die Schaffung interaktiver Welten wider.",
+                "mission_title": "Mission",
+                "inti_mission": "Erstellung qualitativ hochwertiger Videospiele mit AAA-Standards, die immersive Erlebnisse in Genres wie Mystery, Action, Survival und Horror bieten.",
+                "vision_title": "Vision",
+                "inti_vision": "Weltweit als Säule der Videospielentwicklung in Lateinamerika anerkannt zu werden.",
+                "values_title": "Werte",
+                "value_creativity": "Kreativität: Wir innovieren in jeder Geschichte und jedem Design.",
+                "value_commitment": "Engagement: Wir liefern hochwertige Produkte.",
+                "value_passion": "Leidenschaft: Wir leben und vermitteln die Liebe zu Videospielen.",
+                "value_culture": "Kultur: Wir ehren unsere andinen Wurzeln und teilen sie mit der Welt.",
+                
+                "wb_title": "WBStudios Games",
+                "wb_description": "Spezialisiert auf die Förderung von Videospielprojekten, bietet Marketingberatung und vollständige Videospielentwicklung mit Schwerpunkt auf Innovation in Videospielen, Technologien und Anwendungen.",
+                "services_title": "Dienstleistungen",
+                "service_games": "Videospielentwicklung",
+                "service_mobile": "Mobile Technologien und Apps",
+                "service_content": "Zugehörige digitale Inhalte",
+                "project_question": "Haben Sie ein persönliches oder berufliches Projekt, das Unterstützung benötigt?",
+                "project_invitation": "Kontaktieren Sie uns über soziale Netzwerke und wir werden Ihren Vorschlag prüfen.",
+                
+                // Projects
+                "projects_title": "Unsere Projekte",
+                "status_development": "In Entwicklung",
+                "status_waiting": "In Wartestellung",
+                "poveglia_description": "Besuchen Sie einen der dunkelsten Orte Italiens, wo Hunderte von Seelen in der Zeit vergessen wurden. Nach einer gefeierten Karriere als Privatdetektiv nimmt Detective William Miller einen letzten Fall an; das Verschwinden der Familie Pierangelli, das seit über dreißig Jahren ein Rätsel ist.",
+                "sinister_description": "In Sinister Soul verkörpern Sie Jhon, der auf einer Nachtfahrt zu seiner Familie gezwungen ist, Zoar zu betreten, eine verlassene und verfluchte Stadt. Stellen Sie sich einer mysteriösen Entität und furchterregenden Feinden mit seltsamen Gegenständen. Werden Sie die Beweglichkeit haben, zu überleben?",
+                "button_official": "Offizielle Seite ansehen",
+                "button_steam": "Auf Steam ansehen",
+                
+                // Courses
+                "courses_title": "🎓 Kurse von Willians Benites — Von Null zu Pro",
+                "courses_subtitle": "Möchten Sie lernen, wie man Videospiele mit Unreal Engine von Grund auf erstellt oder Ihre Fähigkeiten als Entwickler verbessert? Hier sind zwei Kurse, die Ihnen helfen sollen, Schritt für Schritt mit einem praktischen und direkten Ansatz voranzukommen:",
+                "course_1_badge": "🟢 Kurs 1",
+                "course_1_title": "Erstellung eines Side-Scrolling-Videospiels von Grund auf in Unreal Engine 4",
+                "course_1_description": "📘 Ideal für Anfänger, die den kompletten Entwicklungsfluss verstehen möchten.",
+                "course_1_details": "Lernen Sie, ein komplettes Spiel von Grund auf zu erstellen, einschließlich Mechaniken, Levels, KI und mehr. Perfekt für diejenigen, die in die Videospielentwicklung einsteigen.",
+                "course_2_badge": "🌿 Kurs 2",
+                "course_2_title": "Umgebungsdesign in Unreal Engine 5 (Spanisch)",
+                "course_2_description": "🎨 Lernen Sie, visuell beeindruckende und für UE5 optimierte Szenarien zu erstellen.",
+                "course_2_details": "Beherrschen Sie professionelle Techniken, um beeindruckende Umgebungen in Unreal Engine 5 zu erstellen. Enthält Beleuchtung, Materialien, Landschaften und Optimierung.",
+                "button_course": "Kurs auf Udemy ansehen",
+                "courses_note_1": "📌 Alle Kurse sind auf Spanisch und für spanischsprachige Entwickler konzipiert.",
+                "courses_note_2": "📣 Wenn Sie Fragen haben oder Ihren Fortschritt teilen möchten, nutzen Sie die Kanäle ⁠🚒┊hilfe-ue5 oder ⁠💡┊dein-projekt.",
+                
+                // Store
+                "store_title": "🛒 Shop - Professionelle Assets",
+                "store_subtitle": "Entdecken Sie unsere professionellen Assets für Unreal Engine, entwickelt, um Ihre Entwicklung zu beschleunigen und Ihre Projekte auf die nächste Stufe zu heben.",
+                "product_1_badge": "🎼 Battle Sound System V2",
+                "product_1_title": "AAA-Musiksystem für epische Schlachten",
+                "product_1_description": "Bereits in mehreren Spielen für seine einfache Implementierung anerkannt, ermöglicht dieses System Ihnen, mit wenigen Klicks dynamische Musik zu Ihren Third- oder First-Person-Kämpfen hinzuzufügen.",
+                "product_1_update": "🆕 V2-Update",
+                "product_1_features": "Enthält die SongChanger-Blueprint, die es Ihnen ermöglicht, Ambient-Musik abschnittsweise oder global zu aktivieren.",
+                "feature_section": "🧩 Nach Abschnitt: Ziehen Sie die Blueprint in einen Raum und weisen Sie die Track-Nummer zu",
+                "feature_global": "🌐 Global: Aktivieren Sie die boolesche Variable Enable Music Ambient",
+                "feature_tutorial": "🎓 Tutorial auf Spanisch enthalten",
+                "feature_support": "📦 Implementierungs-Video-Tutorial und direkter Support",
+                "ideal_for": "💥 Ideal für:",
+                "product_1_ideal": "Actionspiele mit intensiven Kämpfen, Projekte, die AAA-Klangerlebnis suchen, Entwickler, die schnelle und professionelle Ergebnisse wollen.",
+                "button_fab": "Auf FAB ansehen",
+                
+                "product_2_badge": "🌍 Übersetzungssystem + Untertitel mit Stimme",
+                "product_2_title": "Übersetzen Sie Ihr Spiel in 15 Sprachen mit integrierten Untertiteln und Stimmen",
+                "product_2_description": "Entwickelt in Unreal Engine und kompatibel mit allen seinen Versionen, bringt dieses System Zugänglichkeit und Spielererlebnis auf eine andere Ebene.",
+                "features_title": "Hauptmerkmale:",
+                "feature_multilingual": "🌐 Mehrsprachige Übersetzung: Kompatibel mit den 15 meistgesprochenen Sprachen",
+                "feature_subtitles": "🎙️ Untertitel mit Audio: Integriert Stimmen in verschiedenen Sprachen",
+                "feature_easy": "⚡ Erweiterbar und einfach zu verwenden: Übersetzt Menüs, Logos und Audio",
+                "feature_docs": "📚 Vollständige Dokumentation: Video-Tutorials und Discord-Support",
+                "feature_updates": "🔄 Ständige Updates: Neue Funktionen und Verbesserungen",
+                "feature_management": "📊 Verwaltung über Excel oder Google Drive",
+                "product_2_conclusion": "Übersetzen Sie Ihr Spiel ohne Komplikationen, auch wenn Sie es noch nie zuvor getan haben. Es ist schnell, effizient und professionell!",
+                
+                // Contact
+                "contact_title": "Kontaktieren Sie uns",
+                "inti_contact": "INTI Games Productions",
+                "wb_contact": "WBStudios Games",
+                "project_inquiry": "Haben Sie ein Projekt?",
+                "project_invitation_detail": "Wenn Sie ein Videospielprojekt haben, das Unterstützung benötigt, zögern Sie nicht, uns direkt per E-Mail zu kontaktieren:",
+                "project_response": "Wir werden Ihren Vorschlag prüfen und so schnell wie möglich antworten.",
+                "dev_inquiry": "Für Entwicklungsanfragen",
+                "dev_invitation": "Wenn Sie spezifische Fragen zur Entwicklung unserer Spiele haben, können Sie kontaktieren:",
+                
+                // Footer
+                "footer_rights": "Alle Rechte vorbehalten.",
+                "footer_developing": "Entwicklung der Zukunft der Videospiele aus Peru.",
+                
+                // General
+                "video_unsupported": "Ihr Browser unterstützt das Video-Element nicht."
+            },
+            // Idiomas adicionales (ru, zh, ja, ko) con estructura básica
+            ru: {
+                "nav_about": "О нас",
+                "nav_projects": "Проекты",
+                "nav_courses": "Курсы",
+                "nav_store": "Магазин",
+                "nav_contact": "Контакты",
+                "hero_title": "Создание незабываемых игровых впечатлений",
+                "hero_button": "Смотреть проекты",
+                // ... añadir más traducciones para ruso
+            },
+            zh: {
+                "nav_about": "关于我们",
+                "nav_projects": "项目",
+                "nav_courses": "课程",
+                "nav_store": "商店",
+                "nav_contact": "联系我们",
+                "hero_title": "创造难忘的游戏体验",
+                "hero_button": "查看项目",
+                // ... añadir más traducciones para chino
+            },
+            ja: {
+                "nav_about": "私たちについて",
+                "nav_projects": "プロジェクト",
+                "nav_courses": "コース",
+                "nav_store": "ストア",
+                "nav_contact": "お問い合わせ",
+                "hero_title": "忘れられないゲーム体験の創造",
+                "hero_button": "プロジェクトを見る",
+                // ... añadir más traducciones para japonés
+            },
+            ko: {
+                "nav_about": "회사 소개",
+                "nav_projects": "프로젝트",
+                "nav_courses": "코스",
+                "nav_store": "스토어",
+                "nav_contact": "연락처",
+                "hero_title": "잊을 수 없는 게임 경험 창조",
+                "hero_button": "프로젝트 보기",
+                // ... añadir más traducciones para coreano
+            }
+        };
+
+        // Función para cambiar el idioma
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Actualizar botones de idioma
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Guardar preferencia
+            localStorage.setItem('preferred-language', lang);
+            
+            // Actualizar atributo lang del html
+            document.documentElement.lang = lang;
+        }
+
+        // Inicializar sistema de traducción
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar idioma preferido o detectar idioma del navegador
+            const savedLang = localStorage.getItem('preferred-language');
+            const browserLang = navigator.language.split('-')[0];
+            const defaultLang = savedLang || (['en', 'pt', 'fr', 'it', 'de', 'ru', 'zh', 'ja', 'ko'].includes(browserLang) ? browserLang : 'es');
+            
+            changeLanguage(defaultLang);
+            
+            // Event listeners para botones de idioma
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Inicializar carruseles
+            initializeCarousel('poveglia-carousel');
+            initializeCarousel('sinister-carousel');
+        });
+
         // Smooth scrolling para los enlaces de navegación
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1185,6 +1774,8 @@
         // Carrusel functionality
         function initializeCarousel(carouselId) {
             const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            
             const slides = carousel.querySelector('.carousel-slides');
             const dots = carousel.querySelectorAll('.carousel-dot');
             const prevBtn = carousel.querySelector('.carousel-prev');
@@ -1214,8 +1805,8 @@
             }
             
             // Event listeners
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
             
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => goToSlide(index));
@@ -1224,10 +1815,6 @@
             // Auto-advance slides every 5 seconds
             setInterval(nextSlide, 5000);
         }
-        
-        // Initialize carousels
-        initializeCarousel('poveglia-carousel');
-        initializeCarousel('sinister-carousel');
     </script>
 </body>
 </html>
